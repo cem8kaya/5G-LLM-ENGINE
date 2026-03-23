@@ -1,0 +1,278 @@
+[
+  {
+    "sample_id": "ALM-001",
+    "type": "alarm",
+    "alarm_id": "AMF-2024-03-15-001",
+    "timestamp": "2024-03-15T08:23:11Z",
+    "network_element": "amf-pool-1-node-2",
+    "ne_type": "AMF",
+    "severity": "CRITICAL",
+    "alarm_code": "AMF-OVERLOAD-001",
+    "description": "AMF CPU utilization exceeded 95% threshold. Registration request processing queue depth reached 48000. New NAS registrations are being rejected with 5GMM cause #22 (Congestion).",
+    "affected_subscribers": 12000,
+    "related_kpis": ["AMF_CPU_UTIL", "NAS_REG_REQ_QUEUE_DEPTH", "NAS_REG_REJECT_RATE"],
+    "additional_info": {
+      "cpu_util_pct": 97.3,
+      "queue_depth": 48000,
+      "reject_rate_pct": 34.2,
+      "active_ue_count": 245000,
+      "ngap_connections": 312
+    }
+  },
+  {
+    "sample_id": "ALM-002",
+    "type": "alarm",
+    "alarm_id": "SMF-2024-03-15-002",
+    "timestamp": "2024-03-15T09:11:45Z",
+    "network_element": "smf-cluster-3",
+    "ne_type": "SMF",
+    "severity": "MAJOR",
+    "alarm_code": "SMF-PDU-SETUP-FAIL-001",
+    "description": "PDU Session Establishment Success Rate dropped below 90% threshold. UPF N4 PFCP session modification failures detected on upf-pool-2. GTP tunnel creation errors reported.",
+    "affected_subscribers": 3500,
+    "related_kpis": ["PDU_SESSION_SETUP_SR", "N4_PFCP_SESS_MOD_FAIL", "GTP_TUNNEL_CREATE_FAIL"],
+    "additional_info": {
+      "pdu_setup_sr_pct": 83.7,
+      "pfcp_fail_count": 1240,
+      "affected_upf": "upf-pool-2-node-1",
+      "n4_interface_status": "DEGRADED",
+      "error_cause": "UPF_RESOURCE_UNAVAILABLE"
+    }
+  },
+  {
+    "sample_id": "ALM-003",
+    "type": "alarm",
+    "alarm_id": "UPF-2024-03-15-003",
+    "timestamp": "2024-03-15T09:14:02Z",
+    "network_element": "upf-pool-2-node-1",
+    "ne_type": "UPF",
+    "severity": "CRITICAL",
+    "alarm_code": "UPF-MEMORY-EXHAUST-001",
+    "description": "UPF heap memory utilization at 98.4%. GTP-U packet buffer pool exhausted. N3 and N9 interface packet drops increasing. FAR (Forwarding Action Rule) table insertion failures.",
+    "affected_subscribers": 8200,
+    "related_kpis": ["UPF_MEM_UTIL", "GTP_PKT_DROP_RATE", "FAR_INSTALL_FAIL_RATE"],
+    "additional_info": {
+      "heap_util_pct": 98.4,
+      "buffer_pool_free_pct": 1.2,
+      "n3_drop_rate_ppm": 12400,
+      "n9_drop_rate_ppm": 9800,
+      "pdr_table_entries": 1048576,
+      "far_install_fail_count": 340
+    }
+  },
+  {
+    "sample_id": "ALM-004",
+    "type": "alarm",
+    "alarm_id": "IMS-2024-03-15-004",
+    "timestamp": "2024-03-15T10:05:33Z",
+    "network_element": "p-cscf-1",
+    "ne_type": "PCSCF",
+    "severity": "MAJOR",
+    "alarm_code": "PCSCF-SIP-TIMEOUT-001",
+    "description": "P-CSCF SIP INVITE transaction timeout rate exceeded 5% on Gm interface. SIP 408 Request Timeout responses increasing. IMS AKA authentication delays observed from HSS via Cx interface.",
+    "affected_subscribers": 850,
+    "related_kpis": ["SIP_INVITE_TIMEOUT_RATE", "SIP_408_RATE", "CX_AVG_RTT_MS"],
+    "additional_info": {
+      "sip_timeout_rate_pct": 7.3,
+      "sip_408_count_per_min": 124,
+      "cx_avg_rtt_ms": 2340,
+      "cx_timeout_count": 89,
+      "hss_endpoint": "hss-primary",
+      "diameter_peer_status": "DEGRADED"
+    }
+  },
+  {
+    "sample_id": "ALM-005",
+    "type": "alarm",
+    "alarm_id": "AMF-2024-03-15-005",
+    "timestamp": "2024-03-15T11:30:00Z",
+    "network_element": "amf-pool-2-node-1",
+    "ne_type": "AMF",
+    "severity": "MAJOR",
+    "alarm_code": "AMF-XNAP-LINK-DOWN-001",
+    "description": "Xn-C interface link failure detected between gNB-441 and AMF. NGAP UE context transfer procedures failing. Handover interruption time exceeding 300ms threshold for inter-gNB handovers.",
+    "affected_subscribers": 1200,
+    "related_kpis": ["XNAP_LINK_STATUS", "HO_PREP_FAIL_RATE", "HO_INTERRUPTION_TIME_MS"],
+    "additional_info": {
+      "affected_gnb": "gNB-441",
+      "gnb_id": "0x1A2B3C",
+      "ho_prep_fail_rate_pct": 28.4,
+      "ho_interruption_time_ms": 487,
+      "xnap_sctp_status": "FAILED",
+      "last_successful_ho": "2024-03-15T11:28:45Z"
+    }
+  },
+  {
+    "sample_id": "KPI-001",
+    "type": "kpi",
+    "timestamp": "2024-03-15T12:00:00Z",
+    "network_element": "smf-cluster-1",
+    "ne_type": "SMF",
+    "kpi_name": "PDU_SESSION_SETUP_SR",
+    "value": 72.3,
+    "unit": "%",
+    "threshold": 95.0,
+    "is_anomaly": true,
+    "window_minutes": 15,
+    "baseline_value": 98.7,
+    "deviation_pct": -26.8,
+    "correlated_alarms": ["SMF-PDU-SETUP-FAIL-001"],
+    "additional_info": {
+      "total_attempts": 18420,
+      "successful": 13317,
+      "failed": 5103,
+      "top_fail_cause": "NO_RESOURCES_AVAILABLE",
+      "top_fail_cause_count": 3891
+    }
+  },
+  {
+    "sample_id": "KPI-002",
+    "type": "kpi",
+    "timestamp": "2024-03-15T12:15:00Z",
+    "network_element": "amf-pool-1",
+    "ne_type": "AMF",
+    "kpi_name": "NAS_REG_ATTEMPT_RATE",
+    "value": 8240,
+    "unit": "attempts/min",
+    "threshold": 5000,
+    "is_anomaly": true,
+    "window_minutes": 15,
+    "baseline_value": 3200,
+    "deviation_pct": 157.5,
+    "correlated_alarms": ["AMF-OVERLOAD-001"],
+    "additional_info": {
+      "initial_reg_count": 6100,
+      "mobility_reg_count": 1840,
+      "periodic_reg_count": 300,
+      "reject_5gmm_cause_22_count": 2814,
+      "suspected_cause": "FLASH_CROWD_EVENT"
+    }
+  },
+  {
+    "sample_id": "KPI-003",
+    "type": "kpi",
+    "timestamp": "2024-03-15T13:00:00Z",
+    "network_element": "upf-pool-2-node-1",
+    "ne_type": "UPF",
+    "kpi_name": "UPF_THROUGHPUT_GBPS",
+    "value": 0.34,
+    "unit": "Gbps",
+    "threshold": 5.0,
+    "is_anomaly": true,
+    "window_minutes": 30,
+    "baseline_value": 18.7,
+    "deviation_pct": -98.2,
+    "correlated_alarms": ["UPF-MEMORY-EXHAUST-001"],
+    "additional_info": {
+      "n3_rx_gbps": 0.19,
+      "n3_tx_gbps": 0.15,
+      "n9_rx_gbps": 0.0,
+      "n9_tx_gbps": 0.0,
+      "packet_drop_rate_ppm": 12400,
+      "active_pdr_rules": 0
+    }
+  },
+  {
+    "sample_id": "PROTO-001",
+    "type": "protocol_log",
+    "timestamp": "2024-03-15T08:24:00Z",
+    "protocol": "GTPv2",
+    "direction": "UL",
+    "src": "sgw-1 (10.0.1.10)",
+    "dst": "pgw-1 (10.0.1.20)",
+    "message_type": "Create Session Request",
+    "result_code": null,
+    "network_element": "sgw-1",
+    "ne_type": "SGW",
+    "raw_snippet": "GTPv2-C Create Session Request\n  TEID: 0x00000000\n  IMSI: 460001234567890\n  RAT Type: EUTRAN (6)\n  Bearer Context: EBI=5, QCI=9, ARP=1\n  PDN Address Allocation: 0.0.0.0 (dynamic)\n  APN: internet.mnc001.mcc460.gprs\n  ULI: TAI=46001-1234, ECGI=46001-0x1A2B3C4",
+    "additional_info": {
+      "imsi_prefix": "46001",
+      "apn": "internet.mnc001.mcc460.gprs",
+      "qci": 9,
+      "ebi": 5,
+      "sequence_number": "0x0034AF12"
+    }
+  },
+  {
+    "sample_id": "PROTO-002",
+    "type": "protocol_log",
+    "timestamp": "2024-03-15T08:24:01Z",
+    "protocol": "GTPv2",
+    "direction": "DL",
+    "src": "pgw-1 (10.0.1.20)",
+    "dst": "sgw-1 (10.0.1.10)",
+    "message_type": "Create Session Response",
+    "result_code": "REQUEST_ACCEPTED (16)",
+    "network_element": "pgw-1",
+    "ne_type": "PGW",
+    "raw_snippet": "GTPv2-C Create Session Response\n  TEID: 0x0001FA20\n  Cause: REQUEST_ACCEPTED (16)\n  PAA: 10.45.12.87/32\n  Bearer Context Created: EBI=5, Cause=REQUEST_ACCEPTED\n  FTEID (C-Plane): 10.0.1.20, TEID=0x0002BC44\n  FTEID (U-Plane): 10.0.2.20, TEID=0x0003DE55",
+    "additional_info": {
+      "allocated_ip": "10.45.12.87",
+      "pgw_c_teid": "0x0002BC44",
+      "pgw_u_teid": "0x0003DE55",
+      "response_time_ms": 12
+    }
+  },
+  {
+    "sample_id": "PROTO-003",
+    "type": "protocol_log",
+    "timestamp": "2024-03-15T10:06:00Z",
+    "protocol": "SIP",
+    "direction": "UL",
+    "src": "ue-192.168.100.45",
+    "dst": "p-cscf-1 (10.10.1.5)",
+    "message_type": "INVITE",
+    "result_code": null,
+    "network_element": "p-cscf-1",
+    "ne_type": "PCSCF",
+    "raw_snippet": "INVITE sip:+905321234567@ims.mnc001.mcc460.3gppnetwork.org SIP/2.0\nVia: SIP/2.0/UDP 192.168.100.45:5060;branch=z9hG4bK-77ef4c2\nFrom: sip:+905329876543@ims.mnc001.mcc460.3gppnetwork.org;tag=1928301774\nTo: sip:+905321234567@ims.mnc001.mcc460.3gppnetwork.org\nCall-ID: a84b4c76e66710@192.168.100.45\nCSeq: 314159 INVITE\nContact: <sip:+905329876543@192.168.100.45>\nContent-Type: application/sdp\nContent-Length: 142",
+    "additional_info": {
+      "calling_party": "+905329876543",
+      "called_party": "+905321234567",
+      "call_id": "a84b4c76e66710@192.168.100.45",
+      "codec_offer": ["AMR-WB", "AMR-NB"]
+    }
+  },
+  {
+    "sample_id": "PROTO-004",
+    "type": "protocol_log",
+    "timestamp": "2024-03-15T10:06:02Z",
+    "protocol": "DIAMETER",
+    "direction": "UL",
+    "src": "p-cscf-1 (10.10.1.5)",
+    "dst": "hss-primary (10.20.1.10)",
+    "message_type": "UAR (User-Authorization-Request)",
+    "result_code": null,
+    "network_element": "p-cscf-1",
+    "ne_type": "PCSCF",
+    "raw_snippet": "DIAMETER Cx UAR\n  Session-Id: p-cscf-1;1234567890;1\n  Vendor-Specific-Application-Id: 16777216 (3GPP Cx)\n  Auth-Session-State: NO_STATE_MAINTAINED\n  Origin-Host: p-cscf-1.ims.mnc001.mcc460.3gppnetwork.org\n  Destination-Realm: hss.mnc001.mcc460.3gppnetwork.org\n  User-Name: +905329876543@ims.mnc001.mcc460.3gppnetwork.org\n  Public-Identity: sip:+905329876543@ims.mnc001.mcc460.3gppnetwork.org",
+    "additional_info": {
+      "application_id": 16777216,
+      "interface": "Cx",
+      "command_code": 300,
+      "hop_by_hop_id": "0x9A3F1234",
+      "end_to_end_id": "0x5B2E4567"
+    }
+  },
+  {
+    "sample_id": "PROTO-005",
+    "type": "protocol_log",
+    "timestamp": "2024-03-15T10:08:42Z",
+    "protocol": "DIAMETER",
+    "direction": "DL",
+    "src": "hss-primary (10.20.1.10)",
+    "dst": "p-cscf-1 (10.10.1.5)",
+    "message_type": "UAA (User-Authorization-Answer)",
+    "result_code": "DIAMETER_UNABLE_TO_COMPLY (5012)",
+    "network_element": "hss-primary",
+    "ne_type": "HSS",
+    "raw_snippet": "DIAMETER Cx UAA\n  Session-Id: p-cscf-1;1234567890;1\n  Result-Code: DIAMETER_UNABLE_TO_COMPLY (5012)\n  Origin-Host: hss-primary.mnc001.mcc460.3gppnetwork.org\n  Error-Message: IMS subscriber profile retrieval timeout\n  Failed-AVP: User-Name",
+    "additional_info": {
+      "result_code": 5012,
+      "error_message": "IMS subscriber profile retrieval timeout",
+      "rtt_ms": 2342,
+      "threshold_ms": 500,
+      "hss_db_load_pct": 94.1
+    }
+  }
+]
