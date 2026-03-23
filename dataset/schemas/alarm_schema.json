@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TelecomAlarmRecord",
+  "description": "Schema for a single 5G network alarm record used in training",
+  "type": "object",
+  "required": ["alarm_id", "timestamp", "network_element", "ne_type",
+               "severity", "alarm_code", "description"],
+  "properties": {
+    "alarm_id": {
+      "type": "string",
+      "description": "Unique alarm identifier, e.g. AMF-20240101-001"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of alarm trigger"
+    },
+    "network_element": {
+      "type": "string",
+      "description": "NE hostname or ID, e.g. amf-pool-1-node-3"
+    },
+    "ne_type": {
+      "type": "string",
+      "enum": ["AMF", "SMF", "UPF", "PCF", "UDM", "NRF", "AUSF",
+               "gNB", "IMS", "PCSCF", "ICSCF", "SCSCF", "HSS", "PGW", "SGW"],
+      "description": "3GPP network function type"
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["CRITICAL", "MAJOR", "MINOR", "WARNING"],
+      "description": "ITU-T X.733 severity level"
+    },
+    "alarm_code": {
+      "type": "string",
+      "description": "Vendor-specific or 3GPP alarm code, e.g. TS-23502-E001"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 10,
+      "description": "Human-readable alarm description"
+    },
+    "affected_subscribers": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Estimated number of impacted UEs (0 if unknown)"
+    },
+    "related_kpis": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "KPI names correlated with this alarm"
+    },
+    "additional_info": {
+      "type": "object",
+      "description": "Vendor-specific key-value pairs"
+    }
+  },
+  "additionalProperties": false
+}

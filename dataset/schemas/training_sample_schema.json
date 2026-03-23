@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TrainingSample",
+  "description": "Alpaca-style instruction-tuning sample for the 5G RCA model",
+  "type": "object",
+  "required": ["instruction", "input", "output"],
+  "properties": {
+    "instruction": {
+      "type": "string",
+      "minLength": 10,
+      "description": "Task description for the model, e.g. 'Analyze the following 5G alarm and provide RCA'"
+    },
+    "input": {
+      "type": "string",
+      "description": "Structured JSON string of the telecom event (alarm, KPI, log)"
+    },
+    "output": {
+      "type": "string",
+      "minLength": 20,
+      "description": "Expected model response: root cause + explanation + suggestion"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "source":    { "type": "string", "description": "real | synthetic" },
+        "ne_type":   { "type": "string" },
+        "severity":  { "type": "string" },
+        "category":  { "type": "string", "description": "overload | misconfiguration | failure | degradation" }
+      }
+    }
+  },
+  "additionalProperties": false
+}
