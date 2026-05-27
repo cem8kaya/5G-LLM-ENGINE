@@ -1,0 +1,85 @@
+# =============================================================================
+# 5G Telecom AI Engine — .gitignore
+# =============================================================================
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# --- Virtual Environments ---
+venv/
+.venv/
+env/
+.env/
+ENV/
+
+# --- Environment Variables (NEVER commit secrets) ---
+.env
+.env.local
+.env.*.local
+*.secret
+secrets.json
+
+# --- Jupyter Notebooks (output cells) ---
+.ipynb_checkpoints/
+# Keep notebooks but strip outputs via nbstripout (recommended)
+
+# --- Model Weights & Checkpoints ---
+# These are large binary files — store on GDrive or HuggingFace Hub
+training/checkpoints/
+*.bin
+*.safetensors
+*.pt
+*.pth
+*.gguf
+*.ggml
+
+# --- Vector Store (rebuilt from documents) ---
+rag/vectorstore/
+
+# --- Raw / Processed Data (can be large) ---
+# Commit schemas and samples; exclude bulk datasets
+dataset/raw/*.csv
+dataset/raw/*.pcap
+dataset/raw/*.log
+dataset/processed/*.jsonl
+
+# --- Logs ---
+logs/
+*.log
+*.log.*
+
+# --- IDE / Editor ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# --- Testing ---
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# --- Docs Build ---
+docs/_build/
+site/
+
+# --- Temporary Files ---
+tmp/
+temp/
+*.tmp
+*.bak
